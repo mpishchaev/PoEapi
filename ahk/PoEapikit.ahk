@@ -35,10 +35,14 @@ global version := "1.9.10c"
 global poeapiVersion := Format("{}.{}.{}", major_version, minor_version, patchlevel)
 syslog("<b>PoEapikit v{} (" _("Powered by") " PoEapi v{})</b>", version, poeapiVersion)
 
+;#Include, %A_ScriptDir%\extras\debug.ahk
 #Include, %A_ScriptDir%\extras\vendor.ahk
 #Include, %A_ScriptDir%\extras\Pricer.ahk
 #Include, %A_ScriptDir%\extras\Trader.ahk
 #Include, %A_ScriptDir%\extras\Updater.ahk
+#Include, %A_ScriptDir%\extras\AutoDiscounter.ahk
+;#Include, %A_ScriptDir%\extras\AutoTrader.ahk
+;#Include, %A_ScriptDir%\extras\Highlight.ahk
 
 ; Start PoE task
 ptask.start()
@@ -55,6 +59,10 @@ return
 readIni(iniFile) {
     EnvGet, homepath, USERPROFILE
     FileRead, production_config, %HOMEPATH%\Documents\My Games\Path of Exile\%iniFile%
+    if ErrorLevel  ; Failed to load
+    {
+        FileRead, production_config, C:\Users\BNUser\Documents\My Games\Path of Exile\%iniFile%
+    }
     production_config := SubStr(production_config, 1)
     FileAppend, %production_config%, %A_ScriptDir%\%iniFile%
     IniRead, close_panels, %A_ScriptDir%\%iniFile%, ACTION_KEYS, close_panels
@@ -135,7 +143,7 @@ OnClipboardChange:
         if (__trader.checkMessage(Clipboard)) {
             SendInput, {Ctrl up}
             ptask.activate()
-            ptask.sendKeys("^{v}") 
+            ptask.sendKeys("^{v}")
         }
     }
 return
@@ -268,6 +276,10 @@ AutoFillPrice:
     }
 return
 
+AutoDiscount:
+    __autoDiscounter.setDiscountOnActiveStashTab()
+return
+
 ^WheelDown::SendInput {Right}
 ^WheelUp::SendInput {Left}
 
@@ -342,6 +354,10 @@ HighlightItems:
                 ptask.inventory.highlight(item)
         }
     }
+return
+
+HighlightWorthyInventoryItems:
+    __highlight.highlightWorthyInventoryItems()
 return
 
 OpenWiki:

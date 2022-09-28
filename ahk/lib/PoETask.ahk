@@ -449,10 +449,12 @@ class PoETask extends AhkObj {
 
         Sleep, 100
         for i, aItem in this.inventory.getItems() {
-            rule := StashRules.check(aItem)
-            if (rule) {
-                this.stash.switchTab(rule.tabName)
-                this.inventory.move(aItem)
+            if (i < 50) {
+                rule := StashRules.check(aItem)
+                if (rule) {
+                    this.stash.switchTab(rule.tabName)
+                    this.inventory.move(aItem)
+                }
             }
         }
     }

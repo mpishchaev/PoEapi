@@ -6,7 +6,7 @@
 global PluginOptions := { "AutoFlask"     : { "enabled" : true }
 
                         , "AutoOpen"      : { "enabled" : true
-                                            , "range"   : 10
+                                            , "range"   : 5
                                             , "ignoredChests" : "Amphora"
                                             , "chest"   : true
                                             , "delveChestOnly" : true
@@ -26,21 +26,21 @@ global PluginOptions := { "AutoFlask"     : { "enabled" : true }
                                             , "genericItemFilter" : "Incubator|Quicksilver|Eternal (Life|Mana)"
                                             , "rareItemFilter"    : "Jewel|Amulet|Ring" }
 
-                        , "KillCounter"   : { "enabled" : true
+                        , "KillCounter"   : { "enabled" : false
                                             , "radius"  : 50 }
 
                         , "MinimapSymbol" : { "enabled" : true
-                                            , "showNPC"            : true
-                                            , "showPlayer"         : true
+                                            , "showNPC"            : false
+                                            , "showPlayer"         : false
                                             , "showMonsters"       : true
-                                            , "showMinions"        : true
+                                            , "showMinions"        : false
                                             , "showCorpses"        : false
                                             , "rarity"             : 0
                                             , "showDelveChests"    : true
                                             , "showHeistChests"    : true
-                                            , "fontSize"           : 12
-                                            , "minSize"            : 4
-                                            , "showDamage"         : true
+                                            , "fontSize"           : 8
+                                            , "minSize"            : 2
+                                            , "showDamage"         : false
                                             , "minDamage"          : 100000
                                             ; 0: move up/down(negative speed);
                                             ; 1: also move left/right, with random speed;
@@ -56,7 +56,7 @@ global PluginOptions := { "AutoFlask"     : { "enabled" : true }
                                             , "ignoredHeistChests" : "Armour|Weapons|Corrupted|Gems|Jewellery|Jewels|QualityCurrency|Talisman|Trinkets|Uniques" }
 
                         , "PlayerStatus"  : { "enabled" : true
-                                            , "autoQuitThresholdPercentage" : 20
+                                            , "autoQuitThresholdPercentage" : 15
                                             , "autoQuitMinLevel" : 90 } }
 
 ; Flasks
@@ -68,11 +68,11 @@ global AlwaysRunning := true
 
 ; Trader
 global TraderUICompact := true
-global TraderUITransparent := 225
+global TraderUITransparent := 170
 global TraderMaxSessions := 3
 global TraderTimeout := 60
-global TraderMessages := { "thanks" : "t4t, gl."
-                         , "1sec"   : "1 sec."
+global TraderMessages := { "thanks" : "thx & gl"
+                         , "1sec"   : "1 sec pls"
                          , "ask"    : "Hi, are you still interested in {} for {}?"
                          , "sold"   : "sold out." }
 
@@ -100,7 +100,7 @@ global HeistChestNameRegex := "HeistChest(Secondary|RewardRoom)(.*)(Military|Rob
 ;         , "Constraints" : { <property>" : <value>|[minValue, maxValue]
 ;                           , ...}}
 ;       , ... ]
-; 
+;
 ; Supported base types:
 ;       Currency, DivinationCard, Flask, Gem, Map, MapFragment, Prophecy,
 ;       Weapon, Quiver, Armour, Belt, Amulet, Ring, Jewel, Contract, Blueprint

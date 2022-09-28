@@ -212,7 +212,7 @@ class Inventory extends InventoryGrid {
         if (Not this.isOpened()) {
             SendInput, %InventoryKey%
             loop, 10 {
-                Sleep, 50
+                Sleep, 100
                 if (this.isOpened()) {
                     closeInventory := true
                     break
@@ -319,7 +319,7 @@ class StashTab extends InventoryGrid {
                             SendInput, {Shift up}
                             SendInput, %m%{Enter}
                             Sleep, 100
-                            
+
                             if (Not ptask.inventory.drop()) {
                                 this.moveTo(aItem.index)
                                 SendInput, {Click}
@@ -609,7 +609,7 @@ class Vendor extends Element {
             if (Not name || this.name ~= name)
                 return true
         }
-        
+
         SendInput, %CloseAllUIKey%
         Sleep, 100
         return ptask.select(name ? name : "NPC")

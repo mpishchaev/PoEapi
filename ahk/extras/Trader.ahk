@@ -89,7 +89,7 @@ class TradeSession extends AhkGui {
     close() {
         if (Not this.isClosed) {
             this.isClosed := true
-            this.log("    {} (<b>{}</b>)", _("Trade seesion closed"), this.player)
+            this.log("    {} (<b>{}</b>)", _("Trade session closed"), this.player)
         }
         base.close()
     }
@@ -421,7 +421,7 @@ class IncomingTradeSession extends TradeSession {
             Gui, Font, cFEFE76 bold s10, Fontin SmallCaps
             Gui, Add, Text, % "y6 gL1 v" this.__var("whois"), % this.player
             Gui, Font, cFFFAFA bold s10
-            Gui, Add, Text, ys x+10, %  "=> " this.item1.detailInfo 
+            Gui, Add, Text, ys x+10, %  "=> " this.item1.detailInfo
             Gui, Font, c8787FE bold s8
             Gui, Add, Text, % "ys+3 x325 w25 Hwnd" this.__var("elapsedTimeHwnd"), 0s
             Gui, Font, bold s8
@@ -590,7 +590,7 @@ class OutgoingTradeSession extends TradeSession {
             Gui, Font, cFEFE76 bold s10, Fontin SmallCaps
             Gui, Add, Text, % "y6 w100 gL1 v" this.__var("whois"), % ellipsis(this.player, 13)
             Gui, Font, cFFFAFA bold s10
-            Gui, Add, Text, % "ys gL1 v"  this.__var("checkItem"), % this.item2.detailInfo " => " 
+            Gui, Add, Text, % "ys gL1 v"  this.__var("checkItem"), % this.item2.detailInfo " => "
             Gui, Font, c47E635 bold s10
             Gui, Add, Text, x+0 w300, % this.item1.detailInfo
 
