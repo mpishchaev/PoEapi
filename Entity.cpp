@@ -115,12 +115,12 @@ protected:
         std::vector<addrtype> component_list;
 
         component_list = read_array<addrtype>("component_list", 0x0, 0x8);
-        if (component_list.empty() || component_list.size() > 16)
+        if (component_list.empty() || component_list.size() > 32)
             return;
 
         addrtype entry_ptr = PoEMemory::read<addrtype>(component_lookup + 0x30);
         int have_more_components = PoEMemory::read<int>(component_lookup + 0x48);
-        if (have_more_components > 16)
+        if (have_more_components > 32)
             return;
 
         while (have_more_components) {
@@ -180,6 +180,7 @@ public:
     shared_ptr<Item> item;
     Vector3 pos, bounds;
     Point grid_pos;
+    int max_life = -1;
     int saved_life = -1;
     int saved_es = -1;
     int damage_taken = 0;
@@ -225,10 +226,10 @@ public:
 
         if (has_component("Player"))
             is_player = true;
-        else if (has_component("Monster"))
-            is_monster = true;
         else if (has_component("NPC"))
             is_npc = true;
+        else if (has_component("Monster"))
+            is_monster = true;
         else
             is_movable = false;
 
@@ -237,6 +238,7 @@ public:
             is_neutral = positioned->is_neutral();
             ObjectMagicProperties* props = get_component<ObjectMagicProperties>();
             rarity = props ? props->rarity() : 0;
+
             if (rarity == 2) {
                 for (auto& i : props->get_mods()) {
                     if (i.id.find(L"Archnemesis") != wstring::npos) {
@@ -248,6 +250,11 @@ public:
 
                 if (path.find(L"Bestiary") != wstring::npos && path.find(L"Minion") == wstring::npos)
                     is_beast = true;
+            }
+
+            if (health) {
+                saved_es = health->energy_shield();
+                saved_life = health->life(&max_life);
             }
         }
     }
