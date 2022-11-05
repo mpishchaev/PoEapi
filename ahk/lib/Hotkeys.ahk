@@ -35,7 +35,8 @@ global defaultHotkeys := [ [ true,  "",    "``",        "ExitGame",        "Exit
                          , [ false, "",     "",         "openStackedDecks","Open stacked decks"]
                          , [ false, "",     "",         "sortItems",       "Sort items"]
                          , [ true,  "",    "^r",        "Reload",          "Reload script"]
-                         , [ true,  "",    "^q",        "ExitApp",         "Quit PoEapikit"] ]
+                         , [ true,  "",    "^q",        "ExitApp",         "Quit PoEapikit"]
+                         , [ true,  "",    "^F11",        "AutoDiscount",         "Auto discount"] ]
 
 class Hotkeys extends WebGui {
 
@@ -68,7 +69,7 @@ class Hotkeys extends WebGui {
             <div>
                 <h2>Hotkeys</h2>
                 <i class='hint'>* ^ for CTRL, + for SHIFT, ! for ALT and # for Windows key</i><br/>
-                <i class='hint'>** Hotkeys from extra features or patreon only features CAN NOT be changed.</i> 
+                <i class='hint'>** Hotkeys from extra features or patreon only features CAN NOT be changed.</i>
                 <table id='hotkeys'>
                 </table>
             </div>
